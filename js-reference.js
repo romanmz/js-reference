@@ -41,50 +41,6 @@ Symbol.toStringTag			// object prototypes for custom types return '[object Objec
 */
 
 
-// CONTROL FLOW
-// ------------------------------
-
-// 'falsy' values
-/*
-false
-undefined
-null
-0
-NaN
-'' (empty string)
-*/
-// if...else
-
-// switch(expression) { case '': break; }
-
-// throw + try...catch
-
-// Exception types
-/*
-you can throw any type, but preferably you should be throwing a proper error object
-
-'Error' object
-http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
-EvalError
-InternalError
-RangeError
-ReferenceError
-SyntaxError
-TypeError
-URIError
-
-'DOMException' object
-https://developer.mozilla.org/en-US/docs/Web/API/DOMException
-
-''
-*/
-
-// try...catch...finally
-// the 'finally' block is always executed regardless of whether an exception was thrown or not during 'try'
-// any 'return' statements inside 'finally' are used instead of return or throw statements inside 'try' and 'catch'
-
-
-
 // PROMISES
 // ------------------------------
 /*
@@ -201,20 +157,6 @@ myAwaitFunction2( 10 ).then( v => {console.log('success: '+v)} ).catch( v => {co
 // you can use async methods as object and class methods
 // also as arrow functions
 
-
-// LOOPS
-// ------------------------------
-// for(init, condition, incremenet)...
-// do...while(condition)
-// while(condition)...
-
-// label: statement						// 'label' can be any name, allows you to label a statement to make it easy to refer back to it when using 'break' and 'continue' statements
-// break [label]						// terminates the innermost enclosing loop or switch statement, if a label is passed it breaks the innermost statement with that name
-// continue [label]						// continues to the next step of the enclosing loop
-
-// for...in								// loops through all the enumerable properties of an object, for(property in object) {}
-// for...of								// similar but passes the property values instead of names, and only includes enumerable properties (e.g. values of an array without custom props)
-											// also works with strings, generator instances
 
 // FUNCTIONS
 // ------------------------------
