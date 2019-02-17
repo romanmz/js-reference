@@ -1,9 +1,11 @@
-// ==================================================
-// BASICS
-// ==================================================
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript
-// http://kangax.github.io/compat-table/es2016plus/
-// 2017-11-12
+/*
+==================================================
+BASICS
+==================================================
+https://developer.mozilla.org/en-US/docs/Web/JavaScript
+http://kangax.github.io/compat-table/es2016plus/
+2017-11-12
+*/
 
 
 // COMMENTS

@@ -1,44 +1,4 @@
 
-// SYMBOLS
-// ------------------------------
-/*
-
-symbols allow you to define anonymous object properties
-use it for when you need to add properties that are meant to remain private (not enumerable)
-
-Symbol()			// returns a 'symbol' primitive data type, each symbol is unique and may be used as identifiers for object properties
-Symbol(description)	// you can pass an optional description string to help with debugging, but doesn't make any other difference in how you use the symbol
-					// multiple symbols with the same description are still unique and not equal
-var symbol = Symbol()
-
-// symbols by default are never global, if you need global symbols you can use the static methods,
-// unlike normal symbols, global symbols do have a key you can use to retrieve them back:
-Symbol.for(desc)	// returns an existing global symbol if it exists with the provided key, otherwise creates a new global symbol
-Symbol.keyFor(sym)	// returns the 'key' of a given global symbol
-
-// to retrieve all symbols added to an object use:
-Object.getOwnPropertySymbols( object )
-
-// props and methods
-Symbol.iterator				// pass it to a subscript to access the iterator function of an object
-Symbol.species				// access the function that defines what kind of object is returned from the host object methods
-
-Symbol.match				// access the function used for the String.match method
-Symbol.replace
-Symbol.search
-Symbol.split
-
-Symbol.hasInstance			// access the function that defines the behaviour of the object when used after 'instanceof'
-Symbol.isConcatSpreadable	// access the function that defines how should the object behave when passed to the Array.concat() function (return true to spread its items, false to keep the array intact)
-Symbol.unscopables			// access the function that defines how should the object behave in a 'with' statement. !!! that statement is not recommended anyway
-Symbol.toPrimitive			// access the function that determines how should the object be converted to a primitive, for example when calling +obj (number) or obj+'' (string)
-								// the function gets a 'hint' parameter that can be 'string', 'number' or 'default'
-Symbol.toStringTag			// object prototypes for custom types return '[object Object]' by default when converting the prototype to string, with this method you can control this name '[object myName]'
-
-// symbols are ignored from regular enumartions like for...in, JSON.stringify, etc...
-// this means that the only way to access properties that use symbols as key is to reuse the original key, or list them with the getOwnPropertySymbols method
-
-*/
 
 
 // PROMISES
