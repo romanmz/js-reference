@@ -1,99 +1,5 @@
 /*
 
-
-// ITERATORS AND GENERATORS
-// ------------------------------
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
-
-ITERATOR:
-// is any object that implements a 'next' function that returns an object containing 'value' and 'done'
-function makeIterator(array) {
-	var nextIndex = 0;
-	return {
-		next: function() {
-			return nextIndex < array.length ?
-				{value: array[nextIndex++], done: false} :
-				{done: true};
-		}
-	};
-}
-var it = makeIterator(['yo', 'ya']);
-it.next().value; // 'yo'
-it.next().value; // 'ya'
-it.next().done;  // true
-
-GENERATORS:
-// a generator is a function that automatically creates an iterator
-// generators are created with 'function*'
-// the body of the generator doesn't run immediately, it only returns the iterator object
-// when the .next() function is called on the iterator, that's when the body of the generator runs
-// within the generator, you use the 'yield' keyword to return the value at each step, subsequent calls will resume the execution of the body instead of restarting it
-// if the function hits a 'return' statement, the iteration is considered to be over and returns a final object with 'done' set to true
-*/
-function* simpleGenerator(i) {
-	yield i + 1;
-	yield i + 2;
-	yield i + 3;
-}
-var gen1 = simpleGenerator(10);
-console.log( gen1.next() );		// returns first yield (11)
-console.log( gen1.next() );		// resumes and returns second yield (12)
-console.log( gen1.next() );		// resumes and returns third yield (13)
-console.log( gen1.next() );		// resumes and hits the end of the function (implicit return), 'value' is undefined and 'done' is true
-/*
-// if the return statement returns a value, that's added to the 'value' property, otherwise it's left as undefined
-// you can use 'yield*' to call other generators
-	- if you pass an array it returns each item individually on each step (instead of the whole array at once)
-	- same with strings (returns one character each time)
-*/
-function* anotherGenerator(i) {
-	yield i;
-	yield* simpleGenerator(i);
-	yield i + 10;
-	return 999;
-}
-var gen2 = anotherGenerator(10);
-console.log( gen2.next() );		// 10
-console.log( gen2.next() );		// 11
-console.log( gen2.next() );		// 12
-console.log( gen2.next() );		// 13
-console.log( gen2.next() );		// 20
-console.log( gen2.next() );		// 999, done
-/*
-
-// if you pass a value to the .next() function, that value is held by the next 'yield' keyword
-*/
-function* generatorArguments(i) {
-	while(true) {
-		let passedArgument = yield i++;
-		if(typeof passedArgument == 'number') {
-			i = passedArgument;
-		}
-	}
-}
-var gen3 = generatorArguments(10);
-console.log( gen3.next() );		// 10
-console.log( gen3.next() );		// 11
-console.log( gen3.next(20) );	// changes i to 20: 20
-console.log( gen3.next() );		// 21
-console.log( gen3.next() );		// 22
-/*
-
-// you can also use generator expressions
-var myGenerator = function*() {}
-
-// on iterator objects created from a generator you can use these methods:
-	.next( yieldValue )
-	.throw( yieldValue )		// throws an error to be catched within the generator function, sending the optional yield value to be catched
-	.return( yieldValue )		// replaces the next yield value with the passed value (so it's immediately returned back), and ends the iteration (so also returns .done === true)
-
-// GENERATOR FUNCTIONS
-you can get a 'GeneratorFunction' by reading the constructor property of any generator's prototype, e.g:
-var myGenerator = Object.getPrototypeOf( function*(){} ).constructor;
-var newGenerator = myGenerator( 'arg1', 'arg2', 'yield arg1; yield arg2' );		// you first pass the argument names as strings, and the last argument is the body of the function also as a string
-var myIterator = myGenerator();
-
-
 // PROXIES
 // ------------------------------
 // A 'proxy' extends a given object with custom methods for handling an object built-in properties and methods
@@ -143,70 +49,6 @@ Reflect
 
 
 */
-function TestObject1() {
-	function method1() {
-		console.log(arguments.callee);
-	}
-	this.method2 = function() {
-		console.log(arguments.callee);
-	};
-	this.prop1 = 10;
-}
-TestObject1.prototype.greeting = function() {
-	console.log('lol hi');
-}
-var TestObject2 = {
-	method1: function() {
-		console.log(arguments.callee);
-	},
-	method2() {
-		console.log(arguments.callee);
-	}
-};
-
-
-var test1 = new TestObject1();
-var test2 = Object.create(TestObject2);
-
-// test1.method1();
-test1.method2();
-test2.method1();
-test2.method2();
-
-
-function Inherited() {
-	TestObject1.call(this);
-	this.reports = [];
-}
-Inherited.prototype = new TestObject1;
-Inherited.prototype.constructor = Inherited;
-Inherited.prototype.greeting = function() {		// overrides the previous method on 'TestObject1' prototype
-	console.log('yo wassup');
-}
-var test3 = new Inherited();
-console.log( '---' );
-console.log( test3 );
-console.log( test3.constructor );
-test3.greeting();
-
-console.log( test1 );
-console.log( test1.constructor );
-// console.log( Inherited.prototype.constructor );
-console.log( '---' );
-
-
-
-// - own properties and methods
-// - properties and methods inherited from the constructor's prototype (shared by all)
-// - inherit from the prototype's prototype and so on...
-// constructors store their prototype on the 'prototype' property
-// constructors also hold a reference to themselves on the 'prototype.constructor' method
-// instances store their prototype on the '__proto__' property (can vary between browsers), this refers to exactly the same object as 'prototype' on constructors
-// instances store their constructor function on the 'constructor' property (inherited from the prototype)
-// both refer to the same object
-// those prototypes can be based on other prototypes
-//console.log(test3.constructor.prototype)
-
 
 
 // XHR basics
@@ -292,16 +134,7 @@ var firstPromise = Promise.race([ promise1, promise2 ])				// Collects multiple 
 */
 
 
-// HTMLMediaElement
 /*
-media
-	.play()
-	.pause()
-	.currentTime = number
-	.addEventListener('ended')
-	.addEventListener('timeupdate')
-
-
 // CLASSES
 // classes in js are 'syntactic sugar', so they remain prototype-based
 // new keywords:
