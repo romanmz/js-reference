@@ -20,7 +20,7 @@ let namedExpression = function internalName( number ) {
 	return number < 2 ? 1 : internalName( number - 1 );
 }
 
-// A function can also refer to itself with the arguments.callee property
+// A function can also refer to itself with the arguments.callee property (not supported on 'strict' mode)
 function calleeFunction( number ) {
 	return number < 2 ? 1 : arguments.callee( number - 1 );
 }
