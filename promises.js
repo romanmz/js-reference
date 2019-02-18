@@ -45,6 +45,18 @@ mypromise.then( response => {
 });
 
 
+// HANDLING MULTIPLE PROMISES AT ONCE
+// ------------------------------
+
+// Use the static method Promise.all() to group multiple promises and handle them using a single one
+// the new promise will resolve only when all the internal promises have done the same, and as soon as one of them is rejected then the main promise will also fail
+let allPromises = Promise.all( [promise1, promise2] );
+
+// Promise.race() also lets you group multiple promises into a single one,
+// but in this case as soon as one of the internal promises is resolved or rejected, the main promise will do the same and ignore all others
+let firstPromise = Promise.race( [promise1, promise2] );
+
+
 // ASYNC FUNCTIONS
 // ------------------------------
 // async functions are a slightly simpler way of using promises, check out the async-functions.js file
