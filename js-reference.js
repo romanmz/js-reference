@@ -1,55 +1,5 @@
 /*
 
-// PROXIES
-// ------------------------------
-// A 'proxy' extends a given object with custom methods for handling an object built-in properties and methods
-// the passed object with the list of overrides is called the 'handler'
-// each method that overrides a built-in function is called a 'trap'
-// the object being modified is the 'target'
-// 'invariants' are the properties and methods that are not modified
-let handler = {
-	'trap': function() {}
-}
-var proxiedObj = new Proxy(target, handler);
-
-// full list of traps:
-handler
-	// Object.
-		.getPrototypeOf( proxied )
-		.setPrototypeOf( proxied, newPrototype )
-		.isExtensible( proxied )
-		.preventExtensions( proxied )
-		.getOwnPropertyDescriptor( proxied, property )
-		.defineProperty( proxied, property, propertySettings{value, configurable, writable, enumerable} )
-		.ownKeys( proxied )								// Object.keys( proxy )
-	// proxy
-		.has( proxied, property )						// foo in proxy
-		.get( proxied, property, proxy )				// proxy.foo
-		.set( proxied, property, value, proxy )			// proxy.foo = 1
-		.deleteProperty( proxied, property )			// delete proxy.foo
-	// proxy functions
-		.apply( proxied, this, args )					// when 'proxied' is a function: proxy( arg1, arg2 )
-		.construct( proxied, args, 'new'Constructor )	// when 'proxied' is a function: new proxy( arg1, arg2 )
-
-let revocable = Proxy.revocable(target, handler)	// similar but returns a 'revokable' object instead
-let proxy = revocable.proxy							// get the regular proxy object with the 'proxy' property
-revocable.revoke()									// revokes the proxy, you can't use it anymore even if you passed it to other variables
-
-
-// REFLECT
-// ------------------------------
-// built-in object that provides a standard implementation of all the 'trap' methods
-
-Reflect
-	.has(object, 'foo')						// equivalent to object.foo
-	.set(object, 'foo', 10)					// equivalent to object.foo = 10
-	...
-	.getPrototypeOf( object )				// equivalent to Object.getPrototypeOf( object )
-	...
-
-
-*/
-
 
 // XHR basics
 var requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
